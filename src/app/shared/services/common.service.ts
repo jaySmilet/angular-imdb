@@ -9,13 +9,12 @@ export class CommonService {
 
   getAutoCompleteSuggestion(q: string = null): Observable<any> {
     const required_params = new HttpParams().set('q', q);
-    const required_headers = new HttpHeaders();
-    required_headers
-      .set(
+    const required_headers = new HttpHeaders()
+      .append(
         'X-RapidAPI-Key',
         '61871d33b3msh60541e4026ab9b8p121b5ajsn7e748fa3e5d0'
       )
-      .set('X-RapidAPI-Host', 'imdb8.p.rapidapi.com');
+      .append('X-RapidAPI-Host', 'imdb8.p.rapidapi.com');
     return this.httpClient.get<any>(Urls.search_url, {
       headers: required_headers,
       params: required_params,

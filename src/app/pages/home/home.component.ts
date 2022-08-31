@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { CommonService } from '../../shared/services/common.service';
 
@@ -7,23 +7,29 @@ import { CommonService } from '../../shared/services/common.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit ,OnDestroy {
   subscription: Subscription;
   errorMsg: string = null;
-  constructor(private commonService: CommonService) {}
+  autoCompleteSuggestionData:any[]=[];
+  constructor(private commonService: CommonService) {
+  }
   ngOnInit() {}
 
   fetchAutoCompleteSuggestionData(search_text) {
-    search_text = 'permanent roommates';
     this.subscription = this.commonService
       .getAutoCompleteSuggestion(search_text)
       .subscribe(
         (res) => {
           console.log(res);
+          this.autoCompleteSuggestionData = res.d;
         },
         (err) => {
           console.log(err);
         }
       );
+  }
+
+  ngOnDestroy(){
+    this.subscription.unsubscribe();
   }
 }

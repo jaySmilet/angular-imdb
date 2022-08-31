@@ -1,6 +1,8 @@
 <div id="home">
   <div id="search-box">
-    <input type="text" class="form-control" />
-    <button>Go</button>
+    <input type="text" class="form-control" #search_text (keyup)="fetchAutoCompleteSuggestionData(search_text.value)"/>
+    <button (click)="fetchAutoCompleteSuggestionData(search_text.value)">Go</button>
   </div>
 </div>
+
+<button class="btn btn-success">Abc</button>
