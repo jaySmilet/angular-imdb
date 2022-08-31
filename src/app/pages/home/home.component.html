@@ -1,8 +1,23 @@
 <div id="home">
   <div id="search-box">
-    <input type="text" class="form-control" #search_text (keyup)="fetchAutoCompleteSuggestionData(search_text.value)"/>
-    <button (click)="fetchAutoCompleteSuggestionData(search_text.value)">Go</button>
+    <input
+      type="text"
+      class="form-control"
+      [(ngModel)]="search_txt"
+      (keyup)="fetchAutoCompleteSuggestionData(search_txt)"
+    />
+    <button (click)="fetchAutoCompleteSuggestionData(search_txt)">Go</button>
+  </div>
+
+  <div class="container">
+    <div class="card" *ngFor="let data of autoCompleteSuggestionData">
+      <div class="card-header">
+        <img [src]="data.i.imageUrl" />
+      </div>
+      <div class="card-body">
+        <p>{{ data.l }}</p>
+      </div>
+      <div class="card-footer"></div>
+    </div>
   </div>
 </div>
-
-<button class="btn btn-success">Abc</button>

@@ -11,13 +11,14 @@ export class HomeComponent implements OnInit ,OnDestroy {
   subscription: Subscription;
   errorMsg: string = null;
   autoCompleteSuggestionData:any[]=[];
+  search_txt:string;
   constructor(private commonService: CommonService) {
   }
   ngOnInit() {}
 
   fetchAutoCompleteSuggestionData(search_text) {
     this.subscription = this.commonService
-      .getAutoCompleteSuggestion(search_text)
+      .getAutoCompleteSuggestion(this.search_txt)
       .subscribe(
         (res) => {
           console.log(res);
