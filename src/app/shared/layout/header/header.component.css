@@ -1,0 +1,11 @@
+ul {
+  list-style: none;
+  display: flex;
+  justify-content: space-around;
+}
+li a {
+  text-decoration: none;
+}
+a.active {
+  color: green;
+}
